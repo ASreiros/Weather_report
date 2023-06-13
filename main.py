@@ -42,11 +42,12 @@ else:
 	weather_info += "---------------------- \n"
 	weather_info += f"Температура воздуха ночью {min_temp}, ощущается как {apparent_temp_min} \n"
 
-	BOT_TOKEN = os.environ.get("BOT_TOKEN")
+	bot = telepot.Bot(os.environ.get("BOT_TOKEN"))
 	# chat = "-903822745"
 	chat = "-972102355"
-	url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?chat_id={chat}&text={weather_info}"
-	requests.get(url).json()
+	bot.sendPhoto(chat, photo=open('./img/sunny.png', 'rb'))
+	bot.sendMessage(chat, weather_info)
+
 
 
 
