@@ -73,9 +73,12 @@ else:
 	}
 
 	bot = telepot.Bot(os.environ.get("BOT_TOKEN"))
-	chat = "-903822745"
+	# chat = "-903822745"
+	chat = "-972102355"
 	if str(weathercode) in weather_image:
-		bot.sendPhoto(chat, photo=open(f'./img/{weather_image[str(weathercode)]}', 'rb'))
+		dir_name = os.path.dirname(os.path.realpath(__file__))
+		img_path = os.path.join(dir_name, f'./img/{weather_image[str(weathercode)]}')
+		bot.sendPhoto(chat, photo=open(img_path, 'rb'))
 	else:
 		bot.sendMessage(chat, weathercode)
 	bot.sendMessage(chat, weather_info)
