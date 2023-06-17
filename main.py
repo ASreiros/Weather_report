@@ -12,11 +12,9 @@ try:
 	w_response.raise_for_status()
 	print(w_response.json())
 	weather = w_response.json()
-	# weather = {'latitude': 55.663193, 'longitude': 21.15715, 'generationtime_ms': 1.2379884719848633, 'utc_offset_seconds': 3600, 'timezone': 'Europe/London', 'timezone_abbreviation': 'BST', 'elevation': 14.0, 'daily_units': {'time': 'iso8601', 'weathercode': 'wmo code', 'temperature_2m_max': '°C', 'temperature_2m_min': '°C', 'apparent_temperature_max': '°C', 'apparent_temperature_min': '°C', 'precipitation_hours': 'h', 'precipitation_probability_max': '%', 'windspeed_10m_max': 'm/s', 'windgusts_10m_max': 'm/s'}, 'daily': {'time': ['2023-06-14'], 'weathercode': [3], 'temperature_2m_max': [27.5], 'temperature_2m_min': [14.2], 'apparent_temperature_max': [25.8], 'apparent_temperature_min': [11.9], 'precipitation_hours': [0.0], 'precipitation_probability_max': [32], 'windspeed_10m_max': [5.0], 'windgusts_10m_max': [10.2]}}
 
 except Exception as e:
-	print("weather request failed: ", e)
-	flag = False
+		flag = False
 else:
 	weathercode = weather['daily']['weathercode'][0]
 	max_temp = weather['daily']['temperature_2m_max'][0]
@@ -27,7 +25,7 @@ else:
 	windspeed_max = weather['daily']['windspeed_10m_max'][0]
 	windgust_max = weather['daily']['windgusts_10m_max'][0]
 
-	print(weathercode)
+
 
 
 
@@ -77,7 +75,6 @@ else:
 
 	bot = telepot.Bot(os.environ.get("BOT_TOKEN"))
 	chat = "-903822745"
-	# chat = "-972102355"
 	if str(weathercode) in weather_image:
 		bot.sendPhoto(chat, photo=open(f'./img/{weather_image[str(weathercode)]}', 'rb'))
 	else:
