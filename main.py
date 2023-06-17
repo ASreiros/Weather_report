@@ -10,7 +10,6 @@ try:
 
 	w_response = requests.get(url=weather_url)
 	w_response.raise_for_status()
-	print(w_response.json())
 	weather = w_response.json()
 
 except Exception as e:
